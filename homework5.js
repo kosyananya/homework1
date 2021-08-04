@@ -54,7 +54,7 @@
             if (ifExist) {
                 newStr = newStr.slice(i)
                 i = 1
-                if (comparableStr.length >= comparableStrTemp.length) {
+                if (comparableStr.trim().length >= comparableStrTemp.trim().length) {
                     comparableStrTemp = comparableStr
                 }
                 comparableStr = newStr[0]
