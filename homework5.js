@@ -36,35 +36,41 @@
     getLongestWorld("Which would be worse - to live as amonster, or to die as a good man?")
 
     // problem 3
-    
-       function getLongestSubstring(str) {
+    function getLongestSubstring(str) {
         let newStr = str.slice()
         let comparableStr = newStr[0]
         let comparableStrTemp = comparableStr
-        for (let i = 1; i < newStr.length; i++) {
+        for (let i = 0; i < newStr.length; i++) {
             let ifExist = false
             let prevStrLength = comparableStr.length
-            for (let j = 0; j < prevStrLength; j++) {
-                if (newStr[i] !== " " && newStr[i] === comparableStr[j]) {
-                    ifExist = true
-                    break
-                }
-            }
-
-            if (ifExist) {
-                newStr = newStr.slice(i)
-                i = 1
-                if (comparableStr.trim().length >= comparableStrTemp.trim().length) {
-                    comparableStrTemp = comparableStr
-                }
-                comparableStr = newStr[0]
-
-
-            } else {
+            let index = 0
+            if (newStr[i] === " ") {
                 comparableStr += newStr[i]
+            } else {
+                for (let j = 0; j < prevStrLength; j++) {
+                    if (newStr[i] === comparableStr[j]) {
+                        ifExist = true
+                        index = j
+                        break
+                    }
+                }
+
+                if (ifExist) {
+
+                    if (comparableStr.trim().length >= comparableStrTemp.trim().length) {
+                        comparableStrTemp = comparableStr
+                    }
+                    newStr = newStr.slice(index + 1)
+                    i = 0
+                    comparableStr = newStr[0]
+
+
+                } else {
+                    comparableStr += newStr[i]
+                }
             }
         }
-        return comparableStrTemp
+        return comparableStrTemp.trim()
     }
 
 
